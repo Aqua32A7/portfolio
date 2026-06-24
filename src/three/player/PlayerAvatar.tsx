@@ -48,20 +48,21 @@ export const PlayerAvatar = () => {
   });
 
   // ---------- Load character model ----------
-  const gltf = useGLTF('/models/character.glb');
-  const { actions } = useAnimations(gltf?.animations, gltf?.scene);
+  // Temporarily disabled to prevent 404 error during build/runtime
+  // const gltf = useGLTF('/models/character.glb');
+  // const { actions } = useAnimations(gltf?.animations, gltf?.scene);
 
   // Switch between idle/walk based on speed magnitude
-  useEffect(() => {
-    const speedMag = Math.hypot(velocity[0], velocity[2]);
-    if (speedMag > 0.1) {
-      actions?.walk?.reset().fadeIn(0.2).play();
-      actions?.idle?.fadeOut(0.2);
-    } else {
-      actions?.idle?.reset().fadeIn(0.2).play();
-      actions?.walk?.fadeOut(0.2);
-    }
-  }, [velocity, actions]);
+  // useEffect(() => {
+  //   const speedMag = Math.hypot(velocity[0], velocity[2]);
+  //   if (speedMag > 0.1) {
+  //     actions?.walk?.reset().fadeIn(0.2).play();
+  //     actions?.idle?.fadeOut(0.2);
+  //   } else {
+  //     actions?.idle?.reset().fadeIn(0.2).play();
+  //     actions?.walk?.fadeOut(0.2);
+  //   }
+  // }, [velocity, actions]);
 
   // Rotate model to face movement direction (if moving)
   const meshRef = useRef<THREE.Object3D>(null);
@@ -85,17 +86,5 @@ export const PlayerAvatar = () => {
     </mesh>
   );
 
-  if (!gltf || !gltf.scene) {
-    return fallback;
-  }
-
-  // Attach the loaded scene to our ref for rotation handling
-  return (
-    <primitive
-      object={gltf.scene}
-      ref={meshRef as any}
-      position={position as any}
-      castShadow
-    />
-  );
+  return fallback;
 };
