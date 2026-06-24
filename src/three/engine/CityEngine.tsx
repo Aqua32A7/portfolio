@@ -35,7 +35,7 @@ export const CityEngine: FC = () => {
       BUILDINGS.map((b) => ({
         position: b.position as [number, number, number],
         size: [4, 6, 4] as [number, number, number], // approximate building bounding box
-      }))),
+      })),
     [],
   );
 
