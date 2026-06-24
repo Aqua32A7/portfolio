@@ -96,12 +96,12 @@ export const CityEngine: FC = () => {
 
       {/* Static colliders for buildings */}
       {buildingColliders.map((col, i) => (
-        <boxBufferGeometry key={i} args={[col.size[0] * 2, col.size[1] * 2, col.size[2] * 2]} />
+        <boxGeometry key={i} args={[col.size[0] * 2, col.size[1] * 2, col.size[2] * 2]} />
       ))}
 
       {/* Static colliders for landmarks */}
       {landmarkColliders.map((col, i) => (
-        <boxBufferGeometry key={i} args={[col.size[0] * 2, col.size[1] * 2, col.size[2] * 2]} />
+        <boxGeometry key={i} args={[col.size[0] * 2, col.size[1] * 2, col.size[2] * 2]} />
       ))}
 
       {/* Player */}
