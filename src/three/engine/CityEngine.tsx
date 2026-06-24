@@ -11,6 +11,7 @@ import { TreeInstanced } from '../objects/TreeInstanced';
 import { PlayerAvatar } from '../player/PlayerAvatar';
 import { IsometricPerspectiveCamera } from '../camera/IsometricPerspectiveCamera';
 import { CityLights } from '../objects/CityLights'; // placeholder for lights
+import { BuildingInteraction } from '../interactions/BuildingInteraction';
 
 /**
  * CityEngine now includes a <Physics> wrapper that builds static colliders for
