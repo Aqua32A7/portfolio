@@ -4,6 +4,7 @@ import { useThree, useFrame } from '@react-three/fiber';
 import { useKeyboardControls } from '../../hooks/useKeyboardControls';
 import { useSmoothMovement } from '../../hooks/useSmoothMovement';
 import { usePlayerStore } from '../../store/playerStore';
+import { useUIStore } from '../../store/uiStore';
 import { CITY_CONFIG } from '../../config/cityConfig';
 import { useGLTF, useAnimations } from '@react-three/drei';
 import * as THREE from 'three';
@@ -37,14 +38,19 @@ export const PlayerAvatar = () => {
       meshRef.current.position.set(x, y, z);
     }
 
-    // Camera follow (lerp)
-    const targetCam = new THREE.Vector3(
-      x,
-      CITY_CONFIG.cameraHeight,
-      z + CITY_CONFIG.cameraDistance
-    );
-    camera.position.lerp(targetCam, CITY_CONFIG.cameraLerpSpeed);
-    camera.lookAt(x, 0, z);
+    // Read UI store state directly without subscribing the whole component to useFrame loops
+    const { showInterior, isTransitioning } = useUIStore.getState();
+
+    if (!showInterior && !isTransitioning) {
+      // Camera follow (lerp)
+      const targetCam = new THREE.Vector3(
+        x,
+        CITY_CONFIG.cameraHeight,
+        z + CITY_CONFIG.cameraDistance
+      );
+      camera.position.lerp(targetCam, CITY_CONFIG.cameraLerpSpeed);
+      camera.lookAt(x, 0, z);
+    }
   });
 
   // ---------- Load character model ----------

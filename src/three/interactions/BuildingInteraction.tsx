@@ -9,9 +9,8 @@ import { useEffect, useState } from 'react';
 
 export const BuildingInteraction = () => {
   const { position } = usePlayerStore();
-  const { setPrompt, showPrompt, activeBuildingId, setInterior } = useUIStore();
+  const { setPrompt, showPrompt, activeBuildingId, setInterior, isTransitioning, setTransitioning } = useUIStore();
   const { camera } = useThree();
-  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useFrame(() => {
     if (isTransitioning) return;
@@ -42,7 +41,7 @@ export const BuildingInteraction = () => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.code === 'KeyE' && showPrompt && activeBuildingId && !isTransitioning) {
-        setIsTransitioning(true);
+        setTransitioning(true);
         setPrompt(false, activeBuildingId); // Hide prompt
 
         // 1. Open the door
@@ -69,7 +68,7 @@ export const BuildingInteraction = () => {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [showPrompt, activeBuildingId, isTransitioning, camera, setPrompt, setInterior]);
+  }, [showPrompt, activeBuildingId, isTransitioning, camera, setPrompt, setInterior, setTransitioning]);
 
   return null;
 };

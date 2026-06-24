@@ -2,6 +2,7 @@ import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { CityEngine } from "./three/engine/CityEngine";
 import { InteractionPrompt } from "./components/interaction/InteractionPrompt";
+import { InteriorView } from "./components/interior/InteriorView";
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
         <CityEngine />
       </Canvas>
       <InteractionPrompt />
+      <InteriorView />
     </>
   );
 }
