@@ -2,11 +2,10 @@ import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { CityEngine } from "./three/engine/CityEngine";
 import { InteractionPrompt } from "./components/interaction/InteractionPrompt";
-import { UIProvider } from "./store/uiStore";
 
 export default function App() {
   return (
-    <UIProvider>
+    <>
       <Canvas shadows camera={{ position: [0, 10, 20], fov: 35 }}>
         <ambientLight intensity={0.5} />
         <directionalLight
@@ -24,6 +23,6 @@ export default function App() {
         <CityEngine />
       </Canvas>
       <InteractionPrompt />
-    </UIProvider>
+    </>
   );
 }

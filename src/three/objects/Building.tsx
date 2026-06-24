@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useBox } from '@react-three/cannon';
 import { MeshProps } from '@react-three/fiber';
-import { BuildingHighlight } from '../components/interaction/BuildingHighlight';
+import { BuildingHighlight } from '../../components/interaction/BuildingHighlight';
 import { Door } from './Door';
 
 // Simplified building model – a box with a door child
