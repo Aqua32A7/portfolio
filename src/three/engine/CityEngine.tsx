@@ -105,7 +105,10 @@ export const CityEngine: FC = () => {
       ))}
 
       {/* Player */}
-      <PlayerAvatar />
+      <PlayerAvatar position={playerPosition} />
+      
+      {/* Interaction Logic */}
+      <BuildingInteraction />
     </Physics>
   );
 };
